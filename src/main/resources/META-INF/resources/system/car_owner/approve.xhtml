@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/template/_template.xhtml">
+	<ui:define name="title">AHA Car Rental Service</ui:define>
+	<ui:define name="content">
+		<h1 style="text-align: center;">Car Owner Application</h1>
+		<h:form id="form">
+			<h:panelGrid columns="2" style="margin: auto;">
+				<p:outputLabel value="ID" for="idText" />
+				<h:outputText id="idText"
+					value="#{carOwnerProfile.selectedProfile.id}" />
+
+				<p:outputLabel value="First Name" for="firstNameText" />
+				<h:outputText id="firstNameText"
+					value="#{carOwnerProfile.selectedProfile.firstName}" />
+
+				<p:outputLabel value="Last Name" for="lastNameText" />
+				<h:outputText id="lastNameText"
+					value="#{carOwnerProfile.selectedProfile.lastName}" />
+
+				<p:outputLabel value="DOB" for="dobText" />
+				<h:outputText id="dobText"
+					value="#{carOwnerProfile.selectedProfile.dob}">
+					<f:convertDateTime pattern="MM/dd/yyyy" />
+				</h:outputText>
+
+				<p:outputLabel value="Email Address" for="emailAddressText" />
+				<h:outputText id="emailAddressText"
+					value="#{carOwnerProfile.selectedProfile.emailAddress}" />
+
+				<p:outputLabel value="Phone" for="phoneText" />
+				<h:outputText id="phoneText"
+					value="#{carOwnerProfile.selectedProfile.phone}" />
+
+				<p:outputLabel value="Address" for="addressText" />
+				<h:outputText id="addressText"
+					value="#{carOwnerProfile.selectedProfile.address}" />
+
+				<p:outputLabel value="Status" for="statusText" />
+				<p:selectOneRadio id="statusText"
+					disabled="#{carOwnerProfile.isSelectedProfileApproved()}"
+					value="#{carOwnerProfile.selectedStatus}">
+					<f:selectItems value="#{carOwnerProfile.statuses}" />
+					<p:ajax event="change" update="btnApprove" />
+				</p:selectOneRadio>
+
+			</h:panelGrid>
+			<p:panel style="text-align: center;">
+				<p:commandButton action="browse?faces-redirect=true" value="Cancel"
+					icon="fa fa-cancel" />
+				<p:commandButton id="btnApprove"
+					rendered="#{not carOwnerProfile.isSelectedProfileApproved()}"
+					action="#{carOwnerProfile.approveProfile()}"
+					disabled="#{not carOwnerProfile.approvedStatus()}" value="Approve"
+					icon="fa fa-save" />
+			</p:panel>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

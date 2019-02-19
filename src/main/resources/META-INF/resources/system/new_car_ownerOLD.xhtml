@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/template/_template.xhtml">
+	<ui:define name="title">AHA - Car Rental Service</ui:define>
+	<ui:define name="content">
+		<h1 style="text-align: center;">Car Owner Application Form</h1>
+
+		<h:form id="form">
+			<p:messages for="controllerMessages">
+				<p:autoUpdate />
+			</p:messages>
+
+			<p:panelGrid id="formGrid" style="margin: 0 auto;"
+				styleClass="ui-noborder">
+				<p:focus context="formGrid" />
+				<p:row styleClass="ui-widget-header">
+					<p:column colspan="2">Account Information</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column>
+						<p:outputLabel value="User Id" for="userIdInput" />
+					</p:column>
+					<p:column>
+						<p:inputText id="userIdInput"
+							value="#{carOwnerProfile.newProfile.user.username}" required="true"
+							requiredMessage="User Id is required">
+							<p:ajax event="keyup"
+								listener="#{carOwnerProfile.checkAvailableUserId}" />
+						</p:inputText>
+
+						<p:message id="msgUserId" for="userIdInput" showDetail="true"
+							autoUpdate="true" closable="true" />
+					</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Password" for="passwordInput" />
+					</p:column>
+					<p:column>
+						<p:password id="passwordInput"
+							value="#{carOwnerProfile.newProfile.user.password}" required="true"
+							feedback="true" requiredMessage="Password is required" />
+
+						<p:message for="passwordInput" />
+					</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column colspan="2" styleClass="ui-widget-header">
+						Persional Information
+					</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column>
+						<p:outputLabel value="First Name" for="firstNameInput" />
+					</p:column>
+					<p:column>
+						<p:inputText id="firstNameInput"
+							value="#{carOwnerProfile.newProfile.firstName}" required="true"
+							requiredMessage="Frist Name is required" />
+
+						<p:message for="firstNameInput" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Last Name" for="lastNameInput" />
+					</p:column>
+					<p:column>
+						<p:inputText id="lastNameInput"
+							value="#{carOwnerProfile.newProfile.lastName}" required="true"
+							requiredMessage="Last Name is required" />
+
+						<p:message for="lastNameInput" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="DOB" for="dobInput" />
+					</p:column>
+					<p:column>
+						<p:calendar id="dobInput"
+							value="#{carOwnerProfile.newProfile.dob}" pattern="MM/dd/yyyy"
+							mask="true" required="true" requiredMessage="DOB is required">
+						</p:calendar>
+
+						<p:message for="dobInput" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Email Address" for="emailAddressInput" />
+					</p:column>
+					<p:column>
+						<p:inputText id="emailAddressInput"
+							value="#{carOwnerProfile.newProfile.emailAddress}"
+							required="true" requiredMessage="Email Address is required" />
+
+						<p:message for="emailAddressInput" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Phone" for="phoneInput" />
+					</p:column>
+					<p:column>
+						<p:inputText id="phoneInput"
+							value="#{carOwnerProfile.newProfile.phone}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Address" for="addressInput" />
+					</p:column>
+					<p:column>
+						<p:inputText id="addressInput"
+							value="#{carOwnerProfile.newProfile.address}" />
+					</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column colspan="3" style="text-align: center">
+						<p:commandButton update="formGrid" value="Apply" icon="fa fa-save"
+							action="#{carOwnerProfile.createNewProfile}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

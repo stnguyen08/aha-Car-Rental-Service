@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/template/_templateHome.xhtml">
+    <ui:define name="title">AHA ::: Car Profile :::</ui:define>
+    <ui:define name="content">
+        <h:form id="form">
+
+            <div class="homeContainer" style="position: relative">
+
+                    <p:panel id="pnl" header="Select The Period" styleClass="sidenav">
+                        <p:outputLabel for="startDate" value="Start Date:" /><br/>
+                        <p:calendar id="startDate" value="#{homeController.startDate}" required="true"
+                                    mindate="#{homeController.currentDate}" styleClass="dateInput"
+                                    pattern="MM/dd/yyyy">
+                        </p:calendar>
+                        <br/>
+                        <p:outputLabel for="endDate" value="End Date" /><br/>
+                        <p:calendar id="endDate" value="#{homeController.endDate}" mindate="#{homeController.currentDate}"
+                                    required="true"   pattern="MM/dd/yyyy" styleClass="dateInput"/>
+                        <br/>
+                    </p:panel>
+
+                <h:panelGroup id="padding" layout="block">
+                    <ui:include src="_offerGrid.xhtml"/>
+                </h:panelGroup>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

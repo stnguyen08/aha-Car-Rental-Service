@@ -1,0 +1,36 @@
+.sidenav {
+    width: 260px;
+    position: absolute;
+    z-index: 1;
+    left: 60px;
+    background: #eee;
+    overflow-x: hidden;
+    padding: 8px 0;
+}
+
+.homeList {
+    padding: 0px 10px;
+    position: absolute;
+    right: 100px;
+    left: 400px;
+}
+
+.homeContainer{
+	margin-top: 2%;
+}
+
+.dateInput { width: 180px; }
+
+label {
+  display: inline-block; 
+}
+
+.ui-outputlabel .ui-outputlabel-rfi {
+    color: #2098ff;
+}
+
+.mainContent{
+    position: relative;
+    min-height: 500px;
+    margin-top: 4%;
+}
